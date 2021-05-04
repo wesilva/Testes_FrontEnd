@@ -2,5 +2,5 @@
 
 ## Introdução aos testes no Javascript
 
-###  `npm init -y`
+### `npm init -y`
 ### `yarn add -D jest @types/jest`
