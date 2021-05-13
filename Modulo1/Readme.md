@@ -9,3 +9,5 @@
 ### `npm i -g httpserver`
 
 ### `yarn add --dev babel-jest @babel/core @babel/preset-env`
+
+### `yarn add lodash`
