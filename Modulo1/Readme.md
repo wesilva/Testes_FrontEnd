@@ -11,3 +11,7 @@
 ### `yarn add --dev babel-jest @babel/core @babel/preset-env`
 
 ### `yarn add lodash`
+
+### `yarn add -D prettier`
+
+### Para atualizar o snapshot digitar 'u' no console do yarn test:watch
