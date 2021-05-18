@@ -15,3 +15,5 @@
 ### `yarn add -D prettier`
 
 ### Para atualizar o snapshot digitar 'u' no console do yarn test:watch
+
+### `yarn add dinero.js`
