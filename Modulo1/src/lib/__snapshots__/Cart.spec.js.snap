@@ -18,12 +18,17 @@ Object {
       "quantity": 5,
     },
   ],
-  "total": 280136,
+  "total": Object {
+    "amount": 280136,
+    "currency": "BRL",
+    "precision": 2,
+  },
 }
 `;
 
 exports[`Cart checkout() should return an object with the total and the list of items when summary() is called 1`] = `
 Object {
+  "formatted": "R$2,801.36",
   "items": Array [
     Object {
       "product": Object {
@@ -40,6 +45,10 @@ Object {
       "quantity": 5,
     },
   ],
-  "total": 280136,
+  "total": Object {
+    "amount": 280136,
+    "currency": "BRL",
+    "precision": 2,
+  },
 }
 `;
