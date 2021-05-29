@@ -1,7 +1,14 @@
 //import { useCartStore } from '../store/cart';
+import { useState } from 'react';
 
 export default function CartItem({ product }) {
   // const { remove, increase, decrease } = useCartStore((store) => store.actions);
+
+  const [quantity, setQuantity] = useState(1);
+
+  const increase = () => setQuantity(quantity + 1);
+
+  const decrease = () => setQuantity(quantity > 0 ? quantity - 1 : 0);
 
   return (
     <div data-testid="cart-item" className="flex justify-between mt-6">
@@ -9,22 +16,22 @@ export default function CartItem({ product }) {
         <img
           data-testid="image"
           className="h-20 w-20 object-cover rounded"
-          //   src={product.image}
-          //   alt={product.title}
+          src={product.image}
+          alt={product.title}
         />
         <div className="mx-3">
-          <h3 className="text-sm text-gray-600">Wrist clock</h3>
-          {/* <h3 className="text-sm text-gray-600">{product.title}</h3> */}
-          <button
+          <h3 className="text-sm text-gray-600">{product.title}</h3>
+          {/* <button
           // onClick={() => {
           //   remove(product);
           // }}
           >
             remove
-          </button>
+          </button> */}
           <div className="flex items-center mt-2">
             <button
               data-testid="decrease"
+              onClick={() => decrease()}
               // onClick={() => decrease(product)}
               className="text-gray-500 focus:outline-none focus:text-gray-600"
             >
@@ -41,10 +48,11 @@ export default function CartItem({ product }) {
               </svg>
             </button>
             <span data-testid="quantity" className="text-gray-700 mx-2">
-              {/* {product.quantity} */} 4
+              {quantity}
             </span>
             <button
               data-testid="increase"
+              onClick={() => increase()}
               //onClick={() => increase(product)}
               className="text-gray-500 focus:outline-none focus:text-gray-600"
             >
@@ -63,8 +71,7 @@ export default function CartItem({ product }) {
           </div>
         </div>
       </div>
-      <span className="text-gray-600">$200.08</span>
-      {/* <span className="text-gray-600">${product.price}</span> */}
+      <span className="text-gray-600">${product.price}</span>
     </div>
   );
 }

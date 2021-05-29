@@ -1,5 +1,5 @@
 import { screen, render, fireEvent } from '@testing-library/react';
-import ProductCard from './product-card';
+import ProductCart from './product-cart';
 
 const product = {
   title: 'Relógio bonito',
@@ -10,14 +10,14 @@ const product = {
 const addToCart = jest.fn();
 
 const renderProductCard = () => {
-  render(<ProductCard product={product} addToCart={addToCart} />);
+  render(<ProductCart product={product} addToCart={addToCart} />);
 };
 
-describe('ProductCard', () => {
-  it('should render ProductCard', () => {
+describe('ProductCart', () => {
+  it('should render ProductCart', () => {
     renderProductCard();
 
-    expect(screen.getByTestId('product-card')).toBeInTheDocument();
+    expect(screen.getByTestId('product-cart')).toBeInTheDocument();
   });
 
   it('should display proper content', () => {
