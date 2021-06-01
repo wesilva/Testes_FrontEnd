@@ -1,14 +1,37 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import ProductList from '../pages';
+import { makeServer } from '../miragejs/server';
 
+const renderProductList = () => {
+  render(<ProductList />);
+};
 describe('ProductList', () => {
-  it('should ', () => {
-    render(<ProductList />);
+  let server;
+
+  beforeEach(() => {
+    server = makeServer({ environment: 'test' });
+  });
+
+  afterEach(() => {
+    server.shutdown();
+  });
+
+  it('should render Product-list', () => {
+    renderProductList();
 
     expect(screen.getByTestId('product-list')).toBeInTheDocument();
   });
 
-  it.todo('should render the ProductCart component 10 times');
+  it('should render the ProductCart component 10 times', async () => {
+    server.createList('product', 10);
+
+    renderProductList();
+
+    await waitFor(() => {
+      //screen.debug(screen.getAllByTestId('product-cart'));
+      expect(screen.getAllByTestId('product-cart')).toHaveLength(10);
+    });
+  });
   it.todo('should render the no products message');
   it.todo('should render the Search component');
   it.todo('should filter the product list when a search is performed');
