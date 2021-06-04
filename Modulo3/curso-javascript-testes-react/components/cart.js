@@ -1,18 +1,18 @@
 import CartItem from './cart-item';
-//import { useCartStore } from '../store/cart';
+import { useCartStore } from '../store/cart';
 
 export default function Cart() {
-  //   const { open, products } = useCartStore((store) => store.state);
-  //   const { toggle, removeAll } = useCartStore((store) => store.actions);
+  const { open, products } = useCartStore((store) => store.state);
+  const { toggle, removeAll } = useCartStore((store) => store.actions);
 
   //   const hasProducts = products.length > 0;
 
   return (
     <div
       data-testid="cart"
-      //   className={`${
-      //     !open ? 'hidden' : ''
-      //   }  fixed right-0 z-10 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300`}
+      className={`${
+        !open ? 'hidden' : ''
+      }  fixed right-0 z-10 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300`}
     >
       <div className="flex items-center justify-between">
         <h3 className="text-2xl font-medium text-gray-700">Your cart</h3>
@@ -27,7 +27,7 @@ export default function Cart() {
         ) : null} */}
         <button
           data-testid="close-button"
-          //onClick={() => toggle()}
+          onClick={() => toggle()}
           className="text-gray-600 focus:outline-none"
         >
           <svg

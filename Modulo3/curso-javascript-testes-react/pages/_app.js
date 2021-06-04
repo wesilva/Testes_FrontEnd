@@ -2,15 +2,14 @@
 import '../styles/globals.css';
 
 import Cart from '../components/cart';
-//import { useCartStore } from '../store/cart';
+import { useCartStore } from '../store/cart';
 
 if (process.env.NODE_ENV === 'development') {
   require('../miragejs/server').makeServer();
 }
 
 function MyApp({ Component, pageProps }) {
-  //const toggle = useCartStore((store) => store.actions.toggle);
-
+  const toggle = useCartStore((store) => store.actions.toggle);
   return (
     <div className="bg-white">
       <header>
@@ -43,7 +42,7 @@ function MyApp({ Component, pageProps }) {
             </div>
             <div className="flex items-center justify-end w-full">
               <button
-                //onClick={() => toggle()}
+                onClick={() => toggle()}
                 className="text-gray-600 focus:outline-none mx-4 sm:mx-0"
               >
                 <svg

@@ -3,22 +3,21 @@ import { useState } from 'react';
 export default function Search({ doSearch }) {
   const [term, setTerm] = useState('');
 
-  //   const submitHandler = (ev) => {
-  //     ev.preventDefault();
-  //     //doSearch(term);
-  //   };
+  const submitHandler = (ev) => {
+    ev.preventDefault();
+    doSearch(term);
+  };
 
-  //   const inputHandler = (ev) => {
-  //     setTerm(ev.target.value);
-
-  //     if (ev.target.value === '') {
-  //       //doSearch('');
-  //     }
-  //   };
+  const inputHandler = (ev) => {
+    setTerm(ev.target.value);
+    if (ev.target.value === '') {
+      doSearch('');
+    }
+  };
 
   return (
     <form
-      onSubmit={() => doSearch(term)}
+      onSubmit={submitHandler}
       //onSubmit={submitHandler}
       name="search-form"
       className="relative mt-6 max-w-lg mx-auto"
@@ -37,8 +36,7 @@ export default function Search({ doSearch }) {
 
       <input
         value={term}
-        onChange={(ev) => setTerm(ev.target.value)}
-        //onInput={inputHandler}
+        onInput={inputHandler}
         className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
         type="search"
         placeholder="Search"
