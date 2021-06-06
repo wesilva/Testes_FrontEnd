@@ -1,10 +1,13 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act as hooksAct } from '@testing-library/react-hooks';
 import { screen, render } from '@testing-library/react';
 import { useCartStore } from '../store/cart';
 import { makeServer } from '../miragejs/server';
 import { setAutoFreeze } from 'immer';
 import userEvent from '@testing-library/user-event';
 import Cart from './cart';
+import TestRenderer from 'react-test-renderer';
+
+const { act: componentsAct } = TestRenderer;
 
 setAutoFreeze(false);
 
@@ -36,34 +39,36 @@ describe('Cart', () => {
     expect(screen.getByTestId('cart')).toHaveClass('hidden');
   });
 
-  it('should not add css class "hidden" in the component', () => {
-    act(() => {
-      toggle();
+  it('should remove css class "hidden" in the component', async () => {
+    await componentsAct(async () => {
+      render(<Cart />);
+
+      const button = screen.getByTestId('close-button');
+
+      await userEvent.click(button);
+
+      expect(screen.getByTestId('cart')).not.toHaveClass('hidden');
     });
-
-    render(<Cart />);
-
-    expect(screen.getByTestId('cart')).not.toHaveClass('hidden');
   });
 
-  it('should call store toggle() twice', () => {
-    render(<Cart />);
+  it('should call store toggle() twice', async () => {
+    await componentsAct(async () => {
+      render(<Cart />);
 
-    const button = screen.getByTestId('close-button');
+      const button = screen.getByTestId('close-button');
 
-    act(() => {
-      userEvent.click(button);
-      userEvent.click(button);
+      await userEvent.click(button);
+      await userEvent.click(button);
+
+      expect(spy).toHaveBeenCalledTimes(2);
     });
-
-    expect(spy).toHaveBeenCalledTimes(2);
   });
 
   it('should display 2 products carts', () => {
     const products = server.createList('product', 2);
 
     for (const product of products) {
-      act(() => add(product));
+      hooksAct(() => add(product));
     }
 
     render(<Cart />);
