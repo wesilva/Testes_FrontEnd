@@ -59,14 +59,12 @@ describe('Cart', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  it('should display 2 products cards', () => {
+  it('should display 2 products carts', () => {
     const products = server.createList('product', 2);
 
-    act(() => {
-      for (const product in products) {
-        add(product);
-      }
-    });
+    for (const product of products) {
+      act(() => add(product));
+    }
 
     render(<Cart />);
 

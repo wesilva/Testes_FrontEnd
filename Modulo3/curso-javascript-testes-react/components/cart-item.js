@@ -1,8 +1,8 @@
-//import { useCartStore } from '../store/cart';
+import { useCartStore } from '../store/cart';
 import { useState } from 'react';
 
 export default function CartItem({ product }) {
-  // const { remove, increase, decrease } = useCartStore((store) => store.actions);
+  const { remove } = useCartStore((store) => store.actions);
 
   const [quantity, setQuantity] = useState(1);
 
@@ -21,13 +21,13 @@ export default function CartItem({ product }) {
         />
         <div className="mx-3">
           <h3 className="text-sm text-gray-600">{product.title}</h3>
-          {/* <button
-          // onClick={() => {
-          //   remove(product);
-          // }}
+          <button
+            onClick={() => {
+              remove(product);
+            }}
           >
             remove
-          </button> */}
+          </button>
           <div className="flex items-center mt-2">
             <button
               data-testid="decrease"

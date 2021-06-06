@@ -32,7 +32,7 @@ describe('Cart Store', () => {
     expect(result.current.state.products).toHaveLength(0);
   });
 
-  it('should add 2 products to the list', () => {
+  it('should add 2 products to the list and open the cart', () => {
     const products = server.createList('product', 2);
 
     for (const product of products) {
@@ -40,6 +40,7 @@ describe('Cart Store', () => {
     }
 
     expect(result.current.state.products).toHaveLength(2);
+    expect(result.current.state.open).toBe(true);
   });
 
   it('should toggle open state', () => {
