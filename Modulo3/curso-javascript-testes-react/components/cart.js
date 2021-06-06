@@ -48,11 +48,11 @@ export default function Cart() {
         <h3 className="text-center font-bold text-blue-600">
           There are no items in the cart
         </h3>
-      ) : null}
+      ) : null} */}
       {products.map((product) => (
         <CartItem product={product} key={product.id} />
       ))}
-      {hasProducts ? (
+      {/* {hasProducts ? (
         <a className="flex items-center justify-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
           <span>Checkout</span>
           <svg
